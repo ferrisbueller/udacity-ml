@@ -11802,7 +11802,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -11854,14 +11854,15 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
 <span class="n">n_students</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">)</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> 
+<span class="c1">## Corrected this after comments (excluding the label column)</span>
 
 
 <span class="c1"># TODO: Calculate passing students</span>
@@ -11892,7 +11893,7 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
 Graduation rate of the class: 67.09%
@@ -11918,7 +11919,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -12000,7 +12001,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12071,7 +12072,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12243,7 +12244,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12316,7 +12317,7 @@ Testing set has 95 samples.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -12329,9 +12330,10 @@ Testing set has 95 samples.
 <span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span> 
 
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_B</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
+<span class="c1"># EDIT (after comments - using random state wherever applicable)</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">clf_A</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">clf_C</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">DecisionTreeClassifier</span><span class="p">())</span>
+<span class="n">clf_C</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">base_estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">(),</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># TODO: Set up the training set sizes</span>
 <span class="c1"># not reshuffling and resplitting the data as it </span>
@@ -12370,59 +12372,59 @@ Testing set has 95 samples.
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0011 seconds
+Trained model in 0.0009 seconds
 Made predictions in 0.0003 seconds.
 F1 score for training set: 0.8467.
-Made predictions in 0.0003 seconds.
+Made predictions in 0.0002 seconds.
 F1 score for test set: 0.8029.
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0007 seconds
+Trained model in 0.0008 seconds
 Made predictions in 0.0003 seconds.
 F1 score for training set: 0.8406.
-Made predictions in 0.0003 seconds.
+Made predictions in 0.0002 seconds.
 F1 score for test set: 0.7244.
 Training a GaussianNB using a training set size of 300. . .
-Trained model in 0.0011 seconds
-Made predictions in 0.0006 seconds.
+Trained model in 0.0007 seconds
+Made predictions in 0.0003 seconds.
 F1 score for training set: 0.8038.
 Made predictions in 0.0002 seconds.
 F1 score for test set: 0.7634.
 Training a SVC using a training set size of 100. . .
-Trained model in 0.0037 seconds
-Made predictions in 0.0011 seconds.
+Trained model in 0.0012 seconds
+Made predictions in 0.0006 seconds.
 F1 score for training set: 0.8777.
-Made predictions in 0.0008 seconds.
+Made predictions in 0.0006 seconds.
 F1 score for test set: 0.7746.
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0031 seconds
-Made predictions in 0.0018 seconds.
+Trained model in 0.0027 seconds
+Made predictions in 0.0017 seconds.
 F1 score for training set: 0.8679.
 Made predictions in 0.0009 seconds.
 F1 score for test set: 0.7815.
 Training a SVC using a training set size of 300. . .
 Trained model in 0.0059 seconds
-Made predictions in 0.0040 seconds.
+Made predictions in 0.0038 seconds.
 F1 score for training set: 0.8761.
 Made predictions in 0.0013 seconds.
 F1 score for test set: 0.7838.
 Training a AdaBoostClassifier using a training set size of 100. . .
-Trained model in 0.0064 seconds
-Made predictions in 0.0006 seconds.
+Trained model in 0.0020 seconds
+Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0004 seconds.
-F1 score for test set: 0.6195.
+Made predictions in 0.0002 seconds.
+F1 score for test set: 0.6552.
 Training a AdaBoostClassifier using a training set size of 200. . .
-Trained model in 0.0035 seconds
-Made predictions in 0.0003 seconds.
+Trained model in 0.0027 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0003 seconds.
-F1 score for test set: 0.7538.
+Made predictions in 0.0005 seconds.
+F1 score for test set: 0.7402.
 Training a AdaBoostClassifier using a training set size of 300. . .
-Trained model in 0.0033 seconds
-Made predictions in 0.0004 seconds.
+Trained model in 0.0039 seconds
+Made predictions in 0.0003 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0003 seconds.
-F1 score for test set: 0.6333.
+F1 score for test set: 0.6102.
 </pre>
 </div>
 </div>
@@ -12459,21 +12461,21 @@ F1 score for test set: 0.6333.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">1.1</td>
-<td style="text-align:center">.3</td>
+<td style="text-align:center">.9</td>
+<td style="text-align:center">.2</td>
 <td style="text-align:center">.8467</td>
 <td style="text-align:center">.8029</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">.7</td>
-<td style="text-align:center">.3</td>
+<td style="text-align:center">.8</td>
+<td style="text-align:center">.2</td>
 <td style="text-align:center">.8406</td>
 <td style="text-align:center">.7244</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">1.1</td>
+<td style="text-align:center">.8</td>
 <td style="text-align:center">.2</td>
 <td style="text-align:center">.8038</td>
 <td style="text-align:center">.7634</td>
@@ -12493,14 +12495,14 @@ F1 score for test set: 0.6333.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">3.7</td>
-<td style="text-align:center">.8</td>
+<td style="text-align:center">1.2</td>
+<td style="text-align:center">.6</td>
 <td style="text-align:center">.8777</td>
 <td style="text-align:center">.7746</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">3.1</td>
+<td style="text-align:center">2.7</td>
 <td style="text-align:center">.9</td>
 <td style="text-align:center">.8679</td>
 <td style="text-align:center">.7815</td>
@@ -12527,24 +12529,24 @@ F1 score for test set: 0.6333.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">6.4</td>
-<td style="text-align:center">.4</td>
+<td style="text-align:center">2.0</td>
+<td style="text-align:center">.2</td>
 <td style="text-align:center">1</td>
-<td style="text-align:center">.6195</td>
+<td style="text-align:center">.6552</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
-<td style="text-align:center">3.5</td>
-<td style="text-align:center">.3</td>
+<td style="text-align:center">2.7</td>
+<td style="text-align:center">.5</td>
 <td style="text-align:center">1</td>
-<td style="text-align:center">.7538</td>
+<td style="text-align:center">.7402</td>
 </tr>
 <tr>
 <td style="text-align:center">300</td>
-<td style="text-align:center">3.3</td>
+<td style="text-align:center">3.9</td>
 <td style="text-align:center">.3</td>
 <td style="text-align:center">1</td>
-<td style="text-align:center">.6333</td>
+<td style="text-align:center">.6102</td>
 </tr>
 </tbody>
 </table>
@@ -12600,7 +12602,9 @@ F1 score for test set: 0.6333.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>**Answer:</p>
-<p>Support Vector Machine Supervised Learning algorithm tries to find the 'maxium margin' separating hyper-plane (line in case of two dimensions, for simplicity we'll call it a line in further discussion) between the points belonging to the two classes. The margin implies the distance of the line from the nearest point of either class. This criteria works well since by selecting the line with maximum margins we are insuring ourselves against outliers and noise (Points too far to the line don't matter in the final boundary). Also, usually the SVM's work with soft margins i.e. we ignore certain points which are either too close to the line or are on the wrong side of the line while deciding our margins.  The points which determine the margins on both the sides of the line are called support vectors and hence the name of the algorithm. Support vectors can also help us in determining non-linear boundaries. We can transform all the points (uniformly) to another space where the points are linearly separable. Find a separating line in the new space. For any new point, we can transform it similarly to the new space, and depending on which side of the line the point lies, classify it.</p>
+<p><img src="./svm.jpg" alt="title" title="SVM"></p>
+<p>The idea can best be explained by looking at the figure above. The students in our case represents the points. Each student belongs to one of the two classes 'Will Pass' (Boxes) or 'Needs Intervention' (Circle) . Let us simplify the problem by saying we have only two features 'Feature A' (say Education Status of the Parents) and 'Feature B' (say travel time to the school). For this case we can easily plot the points in a two dimensional space (where the axis represents the two features in a numerical form). By looking at the graph it is clear to us that the two classes form  pretty distinct clusters (proximity of points belonging to similar classes). Support Vector Machine algorithm tries to find a line in this space which separates (runs in the middle) the points belonging to the two classes. Of all the possible lines which perform the desired task, SVM tries to find the line which has the 'maximum margin' from both the classes. This implies that the algorithm tries to maximize the distance of the line to the closest point on either side. As we can see even though Line B and Line C have a great distance from the closest point of one class, they are pretty close to the closest point of the other class. Line A on the other hand , chooses the middle ground , and has almost equal distance from the closest point on both the sides and thus maximizes the margins if we just consider the three lines. So if the SVM algorithm had to choose between the three lines it will choose Line A. When we get a fresh point (student) , SVM based on its feature values determines on which side of the line the point lies and accordingly classifies the student as to whether the student is 'Destined to Pass' or 'Needs Intevention'</p>
+<p>We can take the same problem to a higher dimension (more features, just as we have in our problem) and the SVM algorithm will try and find the 'maximum margin' separating hyper-plane rather than a line.  The maximum margin criteria works well since by selecting the line with maximum margins we are insuring ourselves against outliers and noise (Points too far to the line don't matter in the final boundary). Also, usually the SVM's work with soft margins i.e. we ignore certain points which are either too close to the line or are on the wrong side of the line while deciding our margins.  The points which determine the margins on both the sides of the line are called support vectors and hence the name of the algorithm. Support vectors can also help us in determining non-linear boundaries. We can transform all the points (uniformly) to another space where the points are linearly separable. Find a separating line in the new space. For any new point, we can transform it similarly to the new space, and depending on which side of the line the point lies, classify it.</p>
 <p>So whenever we get a new student data, we can feed it to the SVM Model. Based on the class which the classfier predicts for the student, 'Destined to Pass' vs 'Needs Intervention' , we can take further action. The classifier is supposed to give the prediction in a reasonable amount of time (order of milliseconds), and also the storage required by the final model is less (it only stores a linear combination of the support vectors - which are fewer in number as compared to the data points).</p>
 <p>**</p>
 
@@ -12633,12 +12637,13 @@ F1 score for test set: 0.6333.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">svm</span>
 <span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">make_scorer</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">StratifiedShuffleSplit</span>
 
 
 <span class="c1"># TODO: Import &#39;GridSearchCV&#39; and &#39;make_scorer&#39;</span>
@@ -12647,7 +12652,9 @@ F1 score for test set: 0.6333.
 <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;kernel&#39;</span><span class="p">:(</span><span class="s1">&#39;linear&#39;</span> <span class="p">,</span> <span class="s1">&#39;rbf&#39;</span><span class="p">)</span> <span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span> <span class="p">,</span> <span class="mi">100</span> <span class="p">,</span> <span class="mi">1000</span><span class="p">]</span> <span class="p">,</span> <span class="s1">&#39;gamma&#39;</span><span class="p">:[</span> <span class="mf">0.01</span> <span class="p">,</span> <span class="mf">0.001</span> <span class="p">,</span> <span class="mf">0.0001</span><span class="p">]</span> <span class="p">}</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">clf_B</span>
+
+<span class="n">cv</span> <span class="o">=</span> <span class="n">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">y_train</span> <span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="mi">50</span> <span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># TODO: Make an f1 scoring function using &#39;make_scorer&#39; </span>
 <span class="n">f1_scorer</span> <span class="o">=</span> <span class="n">make_scorer</span><span class="p">(</span><span class="n">f1_score</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span><span class="p">)</span>
@@ -12678,13 +12685,13 @@ F1 score for test set: 0.6333.
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;n_jobs&#39;: 1, &#39;verbose&#39;: 0, &#39;estimator__gamma&#39;: &#39;auto&#39;, &#39;estimator__decision_function_shape&#39;: None, &#39;estimator__probability&#39;: False, &#39;param_grid&#39;: {&#39;kernel&#39;: (&#39;linear&#39;, &#39;rbf&#39;), &#39;C&#39;: [1, 10, 100, 1000], &#39;gamma&#39;: [0.01, 0.001, 0.0001]}, &#39;cv&#39;: None, &#39;scoring&#39;: make_scorer(f1_score, pos_label=yes), &#39;estimator__cache_size&#39;: 200, &#39;estimator__verbose&#39;: False, &#39;pre_dispatch&#39;: &#39;2*n_jobs&#39;, &#39;estimator__kernel&#39;: &#39;rbf&#39;, &#39;fit_params&#39;: {}, &#39;estimator__max_iter&#39;: -1, &#39;refit&#39;: True, &#39;iid&#39;: True, &#39;estimator__shrinking&#39;: True, &#39;estimator__degree&#39;: 3, &#39;estimator__class_weight&#39;: None, &#39;estimator__C&#39;: 1.0, &#39;estimator__random_state&#39;: None, &#39;estimator&#39;: SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
+<pre>{&#39;n_jobs&#39;: 1, &#39;verbose&#39;: 0, &#39;estimator__gamma&#39;: &#39;auto&#39;, &#39;estimator__decision_function_shape&#39;: None, &#39;estimator__probability&#39;: False, &#39;param_grid&#39;: {&#39;kernel&#39;: (&#39;linear&#39;, &#39;rbf&#39;), &#39;C&#39;: [1, 10, 100, 1000], &#39;gamma&#39;: [0.01, 0.001, 0.0001]}, &#39;cv&#39;: None, &#39;scoring&#39;: make_scorer(f1_score, pos_label=yes), &#39;estimator__cache_size&#39;: 200, &#39;estimator__verbose&#39;: False, &#39;pre_dispatch&#39;: &#39;2*n_jobs&#39;, &#39;estimator__kernel&#39;: &#39;rbf&#39;, &#39;fit_params&#39;: {}, &#39;estimator__max_iter&#39;: -1, &#39;refit&#39;: True, &#39;iid&#39;: True, &#39;estimator__shrinking&#39;: True, &#39;estimator__degree&#39;: 3, &#39;estimator__class_weight&#39;: None, &#39;estimator__C&#39;: 1.0, &#39;estimator__random_state&#39;: 42, &#39;estimator&#39;: SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
   decision_function_shape=None, degree=3, gamma=&#39;auto&#39;, kernel=&#39;rbf&#39;,
-  max_iter=-1, probability=False, random_state=None, shrinking=True,
+  max_iter=-1, probability=False, random_state=42, shrinking=True,
   tol=0.001, verbose=False), &#39;estimator__coef0&#39;: 0.0, &#39;error_score&#39;: &#39;raise&#39;, &#39;estimator__tol&#39;: 0.001}
-Made predictions in 0.0037 seconds.
+Made predictions in 0.0036 seconds.
 Tuned model has a training F1 score of 0.8323.
-Made predictions in 0.0011 seconds.
+Made predictions in 0.0012 seconds.
 Tuned model has a testing F1 score of 0.7945.
 </pre>
 </div>
