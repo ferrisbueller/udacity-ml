@@ -12065,9 +12065,9 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>**Answer:</p>
 <ul>
-<li>The first customer buys large quantities of fresh food products , milk , grocery and detergents and papers which seems to be the kind of stuff you would buy at a supermarket with a lot of fresh unprocessed food.</li>
-<li>The second customer consumes significantly high quantity of frozen materials and also higher quantities of delicatessen which indicates special retail stores selling meat, sausages and other stuff like cheese et al.</li>
-<li>The third customer fares low in every other category except delicatessen which mostly indicates establishements selling processed foods , could be cafes or restaurants. </li>
+<li>The first customer buys large quantities of fresh food products (almost 75th percentile), milk (&gt; 50th percentile) , grocery (&gt; 50th percentile) and detergents and papers (&gt; 75th percentile) which seems to be the kind of stuff you would buy at a supermarket with a lot of fresh unprocessed food.</li>
+<li>The second customer consumes significantly high quantity of frozen materials  (&gt; 75th percentile) and also higher quantities of delicatessen (almost 50th percentile) which indicates special retail stores selling meat, sausages and other stuff like cheese et al.</li>
+<li>The third customer fares low in every other category except delicatessen (&gt; 50th percentile) which mostly indicates establishements selling processed foods , could be cafes or restaurants. </li>
 </ul>
 <p>**</p>
 
@@ -13891,7 +13891,7 @@ wzAMwzCMNvj/ESGtyu9fzPcAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>**Answer:</p>
 <ul>
-<li>There are several pairs of features which exhibit correlation.  Fresh - Milk (low)  ,  Grocery - Milk (High) , Detergents-Paper - Milk (High) , Delicatessen - Milk (low) , Detergents-Paper - Grocery (High). </li>
+<li>There are several pairs of features which exhibit correlation.  Grocery - Milk (High) , Detergents-Paper - Milk (Low) , Detergents-Paper - Grocery (High). </li>
 <li>Since Grocery seems to be higly correlated with two other features, our previous results do concur with this observation. As Grocery can be reasonably predicted using the other features, it's relevance for identifying customers' spending habits is low.</li>
 <li>The values for Grocery , Milk , Fresh , Detergents-Papers are all normally distributed with a high positive skew i.e. the lower value range (to the left of the mean) is  missing.
 **</li>
@@ -21287,7 +21287,12 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>**Answer:</p>
-<p>As indicated in Question 1, I predicted Retail Store outlet for customer 1 and 2 and Restaurant/Cafe segment for Customer 3. The prediction seems to be reversed for Customer 2. The clustering has put it in Cluster 0 which is representative of Restaurant/Cafe kind of outlets. However the choice for Customer 2 was ambiguous to begin with as it had high values for Frozen and Delicatessen. Going by this definition the clustering output seems consistent.</p>
+<ul>
+<li>Sample point 1 scores high on fresh (&gt; 75th percentile) , milk (almost 50th percentile) , grocery (almost 75th percentile) , and detergents and paper (&gt; 75th percentile). The predominance of features from Cluster 1 (leaving Fresh) makes it more of a candiate for cluster 1.</li>
+<li>Sample point 2 scores high on fresh (almost 50th percentile) , frozen (&gt; 75th percentile) , delicatessen (almost 50th percentile). The dominance of features from cluster 0 , makes it a candiate for the same.</li>
+<li>Sample point 3 scores high on fresh (&gt;25th percentile) , frozen (&gt; 50th percentile) , delicatessen ( &gt; 50th percentile). Again as the previous sample , it is a candiate for cluster 0.</li>
+</ul>
+<p>The predictions for the sample points are pretty consistent with the above observations.</p>
 <p>**</p>
 
 </div>
@@ -21329,7 +21334,8 @@ Sample point 2 predicted to be in Cluster 0
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>**Answer:</p>
-<p>The customer segments give a general divide over customers who prepare their own food (shop in retail stores) vs customers who mostly eat processed food in hotels/ cafes / restaurants. The ones who shop in retail stores are more likely to get affected if the delivery days are reduced from 5 to 3 days a week. For the customers who eat processed food,  the restaurants , hotels and cafes act as a buffer between the distributor and the customers and with proper means of storage / processing they can shield the customers from the reduced delivery. So it makes more sense to change the delivery first for that group of customers (ones eating at restaurants) and observe the effect, rather than reducing it for all the customers at the same time.</p>
+<p>Taking cues from the hints in the review :</p>
+<p>For an effective A/B test, the customers in both the control and the test group should be similar (in this case in their buying habits). So this looks like a direct application of the clustering we performed above. The wholesale distributor will first perform clustering on the entire customer set to identify similar groups. Once customer segments have been identified, the distributor can perform the A/B test separately in each cluster (both the control and test group will be contained entirely in a cluster). This will ensure the meaningfulness of the test results i.e. the distributor can act upon in his findings on customer perception to the changed delivery service.</p>
 <p>**</p>
 
 </div>
