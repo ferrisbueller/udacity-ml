@@ -16866,7 +16866,19 @@ Note wherever there's a positive nubmer whose value doesn't matter I have marked
 <li>None : 1.59</li>
 </ul>
 <p>The values concur with the theory discussed above.</p>
-<p>As we can see , for all the above examples, the learned q values seem to agree with the ideal policy of how a smart-cab should behave. Hence, we can say that the optimized learning has worked pretty good.</p>
+<p>Some examples of sub optimal policy learning from the file :</p>
+<h4 id="('left',-'red',-'forward',-'right',-'right')">('left', 'red', 'forward', 'right', 'right')<a class="anchor-link" href="#('left',-'red',-'forward',-'right',-'right')">&#182;</a></h4><p>-- forward : 0.00
+ -- left : -8.57
+ -- right : 1.13
+ -- None : 0.00</p>
+<p>Since this a red light, 'forward' should have a -ve q value (traffic violation), and 'None' should have a +ve value as it is a valid action.</p>
+<h4 id="('left',-'green',-'right',-'right',-'right')">('left', 'green', 'right', 'right', 'right')<a class="anchor-link" href="#('left',-'green',-'right',-'right',-'right')">&#182;</a></h4><p>-- forward : 0.50
+ -- left : 0.00
+ -- right : 0.00
+ -- None : 0.00</p>
+<p>Even though, the traffic light is green, the oncoming traffic is tending to move to its right, hence 'left' action should have a -ve value as moving in that direction will lead to an accident,a major traffic violation. Similarly 'None' should have a -ve value as the cab should move on a green light. Finally 'right' should have a +ve value as it is a valid move.</p>
+<p>These are more cases of missing or unlearned values, than wrong values. Given more training trials, these values would have been learnt eventually.</p>
+<p>As we can see , for most of the above examples, the learned q values seem to agree with the ideal policy of how a smart-cab should behave. Hence, we can say that the optimized learning has worked pretty good. If we had gone for more training trials, the unlearned values would have been filled eventually.</p>
 <p>**</p>
 
 </div>
